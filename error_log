@@ -1,0 +1,21 @@
+[02-May-2020 21:23:37 UTC] PHP Fatal error:  Class 'Controllerextensionmodulecombine' not found in /home/oxitbili/public_html/demo1/system/engine/action.php on line 71
+[02-May-2020 21:24:50 UTC] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "default/template/catalog/product_form.twig" (looked into: /home/oxitbili/public_html/demo1/catalog/view/theme).' in /home/oxitbili/public_html/demo1/system/library/template/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /home/oxitbili/public_html/demo1/system/library/template/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('default/templat...')
+#1 /home/oxitbili/public_html/demo1/system/library/template/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('default/templat...')
+#2 /home/oxitbili/public_html/demo1/system/library/template/Twig/Environment.php(378): Twig_Environment->getTemplateClass('default/templat...', NULL)
+#3 /home/oxitbili/public_html/demo1/system/library/template/twig.php(33): Twig_Environment->loadTemplate('default/templat...')
+#4 /home/oxitbili/public_html/demo1/system/library/template.php(51): Template\Twig->render('default/templat...', '0')
+#5 /home/oxitbili/public_html/demo1/s in /home/oxitbili/public_html/demo1/system/library/template/Twig/Loader/Filesystem.php on line 215
+[03-May-2020 11:52:16 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:52:23 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:53:11 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:53:21 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:53:59 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:54:02 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:55:14 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 11:55:16 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 12
+[03-May-2020 12:00:25 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 13
+[03-May-2020 12:00:27 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 13
+[03-May-2020 12:02:31 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 13
+[03-May-2020 12:02:32 UTC] PHP Fatal error:  Call to a member function getProductCombined() on null in /home/vedoxit/public_html/demo1.oxit.com.tr/catalog/controller/extension/module/combine.php on line 13

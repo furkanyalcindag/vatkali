@@ -1,0 +1,26 @@
+[30-Apr-2020 13:41:21 UTC] PHP Fatal error:  Access to undeclared static property: ControllerExtensionModuleDeneme::$initial in /home/oxitbili/public_html/demo1/admin/controller/extension/module/deneme.php on line 141
+[30-Apr-2020 13:42:12 UTC] PHP Fatal error:  Access to undeclared static property: ControllerExtensionModuleDeneme::$initial2 in /home/oxitbili/public_html/demo1/admin/controller/extension/module/deneme.php on line 141
+[01-May-2020 15:05:57 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/oxitbili/public_html/demo1/admin/controller/common/column_left.php on line 725
+[02-May-2020 21:00:51 UTC] PHP Fatal error:  Call to undefined function len() in /home/oxitbili/public_html/demo1/admin/controller/catalog/product.php on line 1149
+[07-May-2020 13:33:59 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Could not load model extension_oxit_gittigidiyor_entegrasyon!' in /home/vedoxit/public_html/storage/modification/system/engine/loader.php:89
+Stack trace:
+#0 /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/extension/module/gittigidiyor_entegrasyon.php(13): Loader->model('extension_oxit_...')
+#1 [internal function]: ControllerExtensionModuleGittigidiyorEntegrasyon->index()
+#2 /home/vedoxit/public_html/storage/modification/system/engine/action.php(79): call_user_func_array(Array, Array)
+#3 /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#4 [internal function]: ControllerStartupRouter->index()
+#5 /home/vedoxit/public_html/storage/modification/system/engine/action.php(79): call_user_func_array(Array, Array)
+#6 /home/vedoxit/public_html/demo1.oxit.com.tr/system/engine/router.php(67): Action->execute(Object(Registry))
+#7 /home/vedoxit/public_html/demo1.oxit.com.tr/system/engi in /home/vedoxit/public_html/storage/modification/system/engine/loader.php on line 89
+[07-May-2020 14:17:03 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Could not load model extension_oxit_gittigidiyor_entegrasyon!' in /home/vedoxit/public_html/storage/modification/system/engine/loader.php:89
+Stack trace:
+#0 /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/extension/module/gittigidiyor_entegrasyon.php(13): Loader->model('extension_oxit_...')
+#1 [internal function]: ControllerExtensionModuleGittigidiyorEntegrasyon->index()
+#2 /home/vedoxit/public_html/storage/modification/system/engine/action.php(79): call_user_func_array(Array, Array)
+#3 /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#4 [internal function]: ControllerStartupRouter->index()
+#5 /home/vedoxit/public_html/storage/modification/system/engine/action.php(79): call_user_func_array(Array, Array)
+#6 /home/vedoxit/public_html/demo1.oxit.com.tr/system/engine/router.php(67): Action->execute(Object(Registry))
+#7 /home/vedoxit/public_html/demo1.oxit.com.tr/system/engi in /home/vedoxit/public_html/storage/modification/system/engine/loader.php on line 89
+[07-May-2020 20:31:22 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/extension/module/gittigidiyor_entegrasyon.php on line 23
+[07-May-2020 20:32:13 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/vedoxit/public_html/demo1.oxit.com.tr/admin/controller/extension/module/gittigidiyor_entegrasyon.php on line 23

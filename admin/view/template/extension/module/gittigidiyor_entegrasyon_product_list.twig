@@ -1,0 +1,480 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="button" data-toggle="tooltip" title="{{ button_filter }}" onclick="$('#filter-product').toggleClass('hidden-sm hidden-xs');" class="btn btn-default hidden-md hidden-lg"><i class="fa fa-filter"></i></button>
+        <a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        <button type="submit" form="form-product" formaction="{{ copy }}" data-toggle="tooltip" title="{{ button_copy }}" class="btn btn-default"><i class="fa fa-copy"></i></button>
+        <button type="button" form="form-product" formaction="{{ delete }}" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-product').submit() : false;"><i class="fa fa-trash-o"></i></button>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">{% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if success %}
+    <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="row"> <div class="row">
+      <div id="filter-product" class="col-md-12 col-sm-12 hidden-sm hidden-xs">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-filter"></i> {{ text_filter }}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="input-name">{{ entry_name }}</label>
+              <input type="text" name="filter_name" value="{{ filter_name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="input-model">{{ entry_model }}</label>
+              <input type="text" name="filter_model" value="{{ filter_model }}" placeholder="{{ entry_model }}" id="input-model" class="form-control" />
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+              <label class="control-label" for="input-price">{{ entry_price }}</label>
+              <input type="text" name="filter_price" value="{{ filter_price }}" placeholder="{{ entry_price }}" id="input-price" class="form-control" />
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="input-status">{{ entry_status }}</label>
+              <select name="filter_status" id="input-status" class="form-control">
+                <option value=""></option>
+
+                  {% if filter_status == '1' %}
+
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+
+                  {% else %}
+
+                <option value="1">{{ text_enabled }}</option>
+
+                  {% endif %}
+                  {% if filter_status == '0' %}
+
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+
+                  {% else %}
+
+                <option value="0">{{ text_disabled }}</option>
+
+                  {% endif %}
+
+              </select>
+            </div>
+            <div class="form-group text-right">
+              <button type="button" id="button-filter" class="btn btn-default"><i class="fa fa-filter"></i> {{ button_filter }}</button>
+            </div>
+            </div></div>
+        </div>
+      </div></div>
+      <div class="row"><div class="col-md-12  col-sm-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+          </div>
+          <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+          <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+          <div class="panel-body">
+            <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="form-product">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                      <td class="text-center">{{ column_image }}</td>
+                      <td class="text-left">{% if sort == 'pd.name' %} <a href="{{ sort_name }}" class="{{ order|lower }}">{{ column_name }}</a> {% else %} <a href="{{ sort_name }}">{{ column_name }}</a> {% endif %}</td>
+                      <td class="text-left">{% if sort == 'p.model' %} <a href="{{ sort_model }}" class="{{ order|lower }}">{{ column_model }}</a> {% else %} <a href="{{ sort_model }}">{{ column_model }}</a> {% endif %}</td>
+                      <td class="text-right">{% if sort == 'p.price' %} <a href="{{ sort_price }}" class="{{ order|lower }}">{{ column_price }}</a> {% else %} <a href="{{ sort_price }}">{{ column_price }}</a> {% endif %}</td>
+
+                      <td class="text-right">{% if sort == 'p.quantity' %} <a href="{{ sort_quantity }}" class="{{ order|lower }}">{{ column_quantity }}</a> {% else %} <a href="{{ sort_quantity }}">{{ column_quantity }}</a> {% endif %}</td>
+
+                      <!--<td class="text-left">{% if sort == 'p.status' %} <a href="{{ sort_status }}" class="{{ order|lower }}">{{ column_status }}</a> {% else %} <a href="{{ sort_status }}">{{ column_status }}</a> {% endif %}</td>
+                      -->
+                      <td class="text-left">Gittigidiyor Kategori</td>
+                      <td class="text-left">Satış Durumu</td>
+                      <td class="text-right">{{ column_action }}</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                  {% if products %}
+                  {% for product in products %}
+                  <tr>
+                    <td class="text-center">{% if product.product_id in selected %}
+                      <input type="checkbox" name="selected[]" value="{{ product.product_id }}" checked="checked" />
+                      {% else %}
+                      <input type="checkbox" name="selected[]" value="{{ product.product_id }}" />
+                      {% endif %}</td>
+                    <td class="text-center">{% if product.image %} <img src="{{ product.image }}" alt="{{ product.name }}" class="img-thumbnail" /> {% else %} <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span> {% endif %}</td>
+                    <td class="text-left">{{ product.name }}</td>
+                    <td class="text-left">{{ product.model }}</td>
+                    <td class="text-right">{% if product.special %} <span style="text-decoration: line-through;">{{ product.price }}</span><br/>
+                      <div class="text-danger">{{ product.special }}</div>
+                      {% else %}
+                      {{ product.price }}
+                      {% endif %}</td>
+                    <td class="text-right">{% if product.quantity <= 0 %} <span class="label label-warning">{{ product.quantity }}</span> {% elseif product.quantity <= 5 %} <span class="label label-danger">{{ product.quantity }}</span> {% else %} <span class="label label-success">{{ product.quantity }}</span> {% endif %}</td>
+                    <!--<td class="text-left">{{ product.status }}</td> -->
+                    <td><!--<a data-toggle="modal" data-target="#exampleModal" id="modal-product" data-prod="{{ product.product_id }}"> Kategori Seçiniz</a> -->
+
+                      <a onclick="OnModal('{{ product.product_id }}')" data-prod="{{ product.product_id }}">{{ product.gg_cat }}</a>
+
+                    </td>
+                    <td><input type="checkbox"  data-toggle="toggle" data-on="Satışta Var" data-off="Satışta Yok" data-onstyle="success" data-offstyle="danger"></td>
+                    <td class="text-right"><a href="{{ product.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ product.gittigidiyor }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-warning"><i class="fa fa-send"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% else %}
+                  <tr>
+                    <td class="text-center" colspan="8">{{ text_no_results }}</td>
+                  </tr>
+                  {% endif %}
+                    </tbody>
+                  
+                </table>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-sm-6 text-left">{{ pagination }}</div>
+              <div class="col-sm-6 text-right">{{ results }}</div>
+            </div>
+          </div>
+        </div>
+        </div></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="specCat">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body" id="modal-body-prod">
+
+          <div class="row">
+            <input type="hidden" id="prod-id" name="product_id" value="">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-manufacturer"><span
+                      data-toggle="tooltip"
+                      title="{{ help_manufacturer }}">Gittigidiyor Kategori</span></label>
+            <div class="col-sm-10">
+              <select class="js-example-basic-single" id="gg_code" name="gg_code"
+                      style="width: 100%">
+                <option value="" selected disabled>Seçiniz</option>
+                {{ gg_categories }}
+                {% for x in gg_categories %}
+                  {{ x }}
+                  <option value="{{ x.catCode }}">{{ x.catName }}</option>
+
+                {% endfor %}
+
+
+              </select>
+
+              <label>Lütfen en alt kategoriyi seçtiğinizden emin olunuz</label>
+            </div>
+          </div>
+
+            <div id="specs"></div>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="save" onclick="saveCatAndSpec();" class="btn btn-primary">Save changes</button>
+        </div>
+          </form>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2(
+
+
+            {
+
+              dropdownParent: $('#exampleModal')
+            }
+    );
+
+    $("#gg_code").on("change", function () {
+       getSpecs();
+    });
+
+
+
+
+  });
+
+ /* $(document).on("click", "#modal-product", function () {
+    var prodId = $(this).data('prod');
+    $("#modal-body-prod #prod-id").val( prodId );
+    // As pointed out in comments,
+    // it is unnecessary to have to manually call the modal.
+    // $('#addBookDialog').modal('show');
+  });  */
+
+  function OnModal(productId){
+    let son=[];
+    var url = 'index.php?route=extension/module/gittigidiyor_entegrasyon/getCatandSpec&user_token={{ user_token }}&productId=' + productId;
+
+     $.ajax({url:url,
+             type:'get',
+             async :false,
+             success:function(data, status) {
+
+      console.log(data);
+      if (data.oxit_info.length === 0) {
+        $('#exampleModal').modal('show');
+
+        document.getElementById('specs').innerHTML="";
+        console.log("12121");
+
+
+        $('#gg_code').val(null).trigger('change');
+
+        document.getElementById('prod-id').value=productId
+
+
+      } else {
+        $('#exampleModal').modal('show');
+        console.log(data.gg_code);
+        $('#gg_code').val(data.gg_code).trigger('change');
+        son=data.oxit_info;
+
+        for(var i=0;i<son.length;i++){
+
+
+          if(son[i].name!=='gg_code'){
+            console.log(son[i].value);
+
+            if(son[i].value!=null&& document.getElementById(son[i].name)!=null)
+              document.getElementById(son[i].name).value = son[i].value;
+          }
+
+        }
+        document.getElementById('prod-id').value=productId
+      }
+    }});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+  function getSpecs() {
+    var value = $("#gg_code").val();
+    console.log(value);
+    var url = 'index.php?route=extension/module/gittigidiyor_entegrasyon/listSpecs&user_token={{ user_token }}&category_code=' + value;
+
+    $.ajax({url:url,
+      type:'get',
+      async:false,
+      success:function (data, status) {
+      if (data.specs == null) {
+
+        document.getElementById('specs').innerHTML="";
+
+
+      } else {
+        let specsArray = data.specs.spec;
+        let htmlForm = "";
+        for (let i = 0; i < specsArray.length; i++) {
+
+          if (specsArray[i].required === true) {
+
+            if (specsArray[i].type === "Combo") {
+
+              htmlForm += '<div class="form-group">';
+              htmlForm += '<label class="col-sm-4 control-label" for="input-location">' + specsArray[i].name + '</label>';
+              htmlForm += '<div class="col-sm-6">';
+              htmlForm += '<select name="'+specsArray[i].name+'" class="form-control" id="'+specsArray[i].name+'">';
+
+              for(let j=0;j<specsArray[i].values.value.length;j++){
+
+                htmlForm += '<option value="'+specsArray[i].values.value[j]+'">'+specsArray[i].values.value[j]+'</option>'
+
+              }
+              htmlForm+='</select></div></div><br>';
+
+            }
+
+
+          }
+
+        }
+
+        document.getElementById('specs').innerHTML=htmlForm;
+
+
+      }
+    }});
+
+  }
+
+
+  function saveCatAndSpec(){
+    console.log($('#specCat').serialize());
+    $.ajax({
+      type: "POST",
+      url: "index.php?route=extension/module/gittigidiyor_entegrasyon/saveProductFeature&user_token={{ user_token }}",
+      data: $('#specCat').serialize(),
+      success: function(msg){
+        console.log(msg);
+        alert("Başarıyla kaydedildi");
+        $('#exampleModal').modal('hide');
+
+      },
+      error: function(xhr, status, error) {
+        //var err = eval("(" + xhr.responseText + ")");
+        console.log(xhr);
+      }
+    });
+
+
+  }
+
+
+
+  /*$('#save').click(function(){
+    $.ajax({
+      type: "POST",
+      url: "index.php?route=extension/module/gittigidiyor_entegrasyon/saveProductFeature&user_token={{ user_token }}",
+      data: $('#specCat').serialize(),
+      success: function(msg){
+        console.log(msg);
+      }
+    });
+  }); */
+
+
+
+</script>
+  <script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+	var url = '';
+
+	var filter_name = $('input[name=\'filter_name\']').val();
+
+	if (filter_name) {
+		url += '&filter_name=' + encodeURIComponent(filter_name);
+	}
+
+	var filter_model = $('input[name=\'filter_model\']').val();
+
+	if (filter_model) {
+		url += '&filter_model=' + encodeURIComponent(filter_model);
+	}
+
+	var filter_price = $('input[name=\'filter_price\']').val();
+
+	if (filter_price) {
+		url += '&filter_price=' + encodeURIComponent(filter_price);
+	}
+
+	var filter_quantity = $('input[name=\'filter_quantity\']').val();
+
+	if (filter_quantity) {
+		url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
+	}
+
+	var filter_status = $('select[name=\'filter_status\']').val();
+
+	if (filter_status !== '') {
+		url += '&filter_status=' + encodeURIComponent(filter_status);
+	}
+
+	location = 'index.php?route=catalog/product&user_token={{ user_token }}' + url;
+});
+//--></script> 
+  <script type="text/javascript"><!--
+// IE and Edge fix!
+$('button[form=\'form-product\']').on('click', function(e) {
+	$('#form-product').attr('action', $(this).attr('formaction'));
+});
+  
+$('input[name=\'filter_name\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'filter_name\']').val(item['label']);
+	}
+});
+
+$('input[name=\'filter_model\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_model=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['model'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'filter_model\']').val(item['label']);
+	}
+});
+//--></script></div>
+{{ footer }}

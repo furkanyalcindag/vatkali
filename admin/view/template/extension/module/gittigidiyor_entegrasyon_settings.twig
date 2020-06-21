@@ -1,0 +1,214 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}"
+                        class="btn btn-primary"><i class="fa fa-save"></i></button>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i
+                            class="fa fa-reply"></i></a></div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {{  app.session.get('success') }}
+        {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        {% if success %}
+            <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+            </div>
+            {{ response }}
+            <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module"
+                      class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Kargo Firması</label>
+                        <div class="col-sm-10">
+                            <select id="input-status" name="cargoFirm" class="form-control">
+
+                                <option {% if cargoFirm =='aras' %} selected {% endif %} value="aras">Aras Kargo
+                                </option>
+                                <option {% if cargoFirm =='mng' %} selected {% endif %} value="mng">Mng Kargo</option>
+                                <option {% if cargoFirm =='yurtici' %} selected {% endif %} value="yurtici">Yurtiçi
+                                    Kargo
+                                </option>
+                                <option {% if cargoFirm =='ptt' %} selected {% endif %} value="ptt">PTT Kargo</option>
+                                <option {% if cargoFirm =='surat' %} selected {% endif %} value="surat">Sürat Kargo
+                                </option>
+                                <option {% if cargoFirm =='ups' %} selected {% endif %} value="ups">UPS Kargo</option>
+                                <option {% if cargoFirm =='other' %} selected {% endif %} value="other">Diğerleri
+                                </option>
+
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Kargonun Çıkacağı Şehir</label>
+                        <div class="col-sm-10">
+                            <select id="input-status" name="cargoCity" class="form-control">
+
+
+                                <option {% if cargoCity =='1' %} selected {% endif %} value="1">Adana</option>
+                                <option {% if cargoCity =='2' %} selected {% endif %} value="2">Adıyaman</option>
+                                <option {% if cargoCity =='3' %} selected {% endif %} value="3">Afyonkarahisar</option>
+                                <option {% if cargoCity =='4' %} selected {% endif %} value="4">Ağrı</option>
+                                <option {% if cargoCity =='5' %} selected {% endif %} value="5">Amasya</option>
+                                <option {% if cargoCity =='6' %} selected {% endif %} value="6">Ankara</option>
+                                <option {% if cargoCity =='7' %} selected {% endif %} value="7">Antalya</option>
+                                <option {% if cargoCity =='8' %} selected {% endif %} value="8">Artvin</option>
+                                <option {% if cargoCity =='9' %} selected {% endif %} value="9">Aydın</option>
+                                <option {% if cargoCity =='10' %} selected {% endif %} value="10">Balıkesir</option>
+                                <option {% if cargoCity =='11' %} selected {% endif %} value="11">Bilecik</option>
+                                <option {% if cargoCity =='12' %} selected {% endif %} value="12">Bingöl</option>
+                                <option {% if cargoCity =='13' %} selected {% endif %} value="13">Bitlis</option>
+                                <option {% if cargoCity =='14' %} selected {% endif %} value="14">Bolu</option>
+                                <option {% if cargoCity =='15' %} selected {% endif %} value="15">Burdur</option>
+                                <option {% if cargoCity =='16' %} selected {% endif %} value="16">Bursa</option>
+                                <option {% if cargoCity =='17' %} selected {% endif %} value="17">Çanakkale</option>
+                                <option {% if cargoCity =='18' %} selected {% endif %} value="18">Çankırı</option>
+                                <option {% if cargoCity =='19' %} selected {% endif %} value="19">Çorum</option>
+                                <option {% if cargoCity =='20' %} selected {% endif %} value="20">Denizli</option>
+                                <option {% if cargoCity =='21' %} selected {% endif %} value="21">Diyarbakır</option>
+                                <option {% if cargoCity =='22' %} selected {% endif %} value="22">Edirne</option>
+                                <option {% if cargoCity =='23' %} selected {% endif %} value="23">Elazığ</option>
+                                <option {% if cargoCity =='24' %} selected {% endif %} value="24">Erzincan</option>
+                                <option {% if cargoCity =='25' %} selected {% endif %} value="25">Erzurum</option>
+                                <option {% if cargoCity =='26' %} selected {% endif %} value="26">Eskişehir</option>
+                                <option {% if cargoCity =='27' %} selected {% endif %} value="27">Gaziantep</option>
+                                <option {% if cargoCity =='28' %} selected {% endif %} value="28">Giresun</option>
+                                <option {% if cargoCity =='29' %} selected {% endif %} value="29">Gümüşhane</option>
+                                <option {% if cargoCity =='30' %} selected {% endif %} value="30">Hakkâri</option>
+                                <option {% if cargoCity =='31' %} selected {% endif %} value="31">Hatay</option>
+                                <option {% if cargoCity =='32' %} selected {% endif %} value="32">Isparta</option>
+                                <option {% if cargoCity =='33' %} selected {% endif %} value="33">Mersin</option>
+                                <option {% if cargoCity =='34' %} selected {% endif %} value="34">İstanbul</option>
+                                <option {% if cargoCity =='35' %} selected {% endif %} value="35">İzmir</option>
+                                <option {% if cargoCity =='36' %} selected {% endif %} value="36">Kars</option>
+                                <option {% if cargoCity =='37' %} selected {% endif %} value="37">Kastamonu</option>
+                                <option {% if cargoCity =='38' %} selected {% endif %} value="38">Kayseri</option>
+                                <option {% if cargoCity =='39' %} selected {% endif %} value="39">Kırklareli</option>
+                                <option {% if cargoCity =='40' %} selected {% endif %} value="40">Kırşehir</option>
+                                <option {% if cargoCity =='41' %} selected {% endif %} value="41">Kocaeli</option>
+                                <option {% if cargoCity =='42' %} selected {% endif %} value="42">Konya</option>
+                                <option {% if cargoCity =='43' %} selected {% endif %} value="43">Kütahya</option>
+                                <option {% if cargoCity =='44' %} selected {% endif %} value="44">Malatya</option>
+                                <option {% if cargoCity =='45' %} selected {% endif %} value="45">Manisa</option>
+                                <option {% if cargoCity =='46' %} selected {% endif %} value="46">Kahramanmaraş</option>
+                                <option {% if cargoCity =='47' %} selected {% endif %} value="47">Mardin</option>
+                                <option {% if cargoCity =='48' %} selected {% endif %} value="48">Muğla</option>
+                                <option {% if cargoCity =='49' %} selected {% endif %} value="49">Muş</option>
+                                <option {% if cargoCity =='50' %} selected {% endif %} value="50">Nevşehir</option>
+                                <option {% if cargoCity =='51' %} selected {% endif %} value="51">Niğde</option>
+                                <option {% if cargoCity =='52' %} selected {% endif %} value="52">Ordu</option>
+                                <option {% if cargoCity =='53' %} selected {% endif %} value="53">Rize</option>
+                                <option {% if cargoCity =='54' %} selected {% endif %} value="54">Sakarya</option>
+                                <option {% if cargoCity =='55' %} selected {% endif %} value="55">Samsun</option>
+                                <option {% if cargoCity =='56' %} selected {% endif %} value="56">Siirt</option>
+                                <option {% if cargoCity =='57' %} selected {% endif %} value="57">Sinop</option>
+                                <option {% if cargoCity =='58' %} selected {% endif %} value="58">Sivas</option>
+                                <option {% if cargoCity =='59' %} selected {% endif %} value="59">Tekirdağ</option>
+                                <option {% if cargoCity =='60' %} selected {% endif %} value="60">Tokat</option>
+                                <option {% if cargoCity =='61' %} selected {% endif %} value="61">Trabzon</option>
+                                <option {% if cargoCity =='62' %} selected {% endif %} value="62">Tunceli</option>
+                                <option {% if cargoCity =='63' %} selected {% endif %} value="63">Şanlıurfa</option>
+                                <option {% if cargoCity =='64' %} selected {% endif %} value="64">Uşak</option>
+                                <option {% if cargoCity =='65' %} selected {% endif %} value="65">Van</option>
+                                <option {% if cargoCity =='66' %} selected {% endif %} value="66">Yozgat</option>
+                                <option {% if cargoCity =='67' %} selected {% endif %} value="67">Zonguldak</option>
+                                <option {% if cargoCity =='68' %} selected {% endif %} value="68">Aksaray</option>
+                                <option {% if cargoCity =='69' %} selected {% endif %} value="69">Bayburt</option>
+                                <option {% if cargoCity =='70' %} selected {% endif %} value="70">Karaman</option>
+                                <option {% if cargoCity =='71' %} selected {% endif %} value="71">Kırıkkale</option>
+                                <option {% if cargoCity =='72' %} selected {% endif %} value="72">Batman</option>
+                                <option {% if cargoCity =='73' %} selected {% endif %} value="73">Şırnak</option>
+                                <option {% if cargoCity =='74' %} selected {% endif %} value="74">Bartın</option>
+                                <option {% if cargoCity =='75' %} selected {% endif %} value="75">Ardahan</option>
+                                <option {% if cargoCity =='76' %} selected {% endif %} value="76">Iğdır</option>
+                                <option {% if cargoCity =='77' %} selected {% endif %} value="77">Yalova</option>
+                                <option {% if cargoCity =='78' %} selected {% endif %} value="78">Karabük</option>
+                                <option {% if cargoCity =='79' %} selected {% endif %} value="79">Kilis</option>
+                                <option {% if cargoCity =='80' %} selected {% endif %} value="80">Osmaniye</option>
+                                <option {% if cargoCity =='81' %} selected {% endif %} value="81">Yurtdışı</option>
+                                <option {% if cargoCity =='82' %} selected {% endif %} value="82">Düzce</option>
+                                <option {% if cargoCity =='83' %} selected {% endif %} value="85">KKTC</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Kargo Ücreti</label>
+                        <div class="col-sm-10">
+                            <select id="input-status" name="cargoPay" class="form-control">
+
+                                <option {% if cargoPay =='S' %} selected {% endif %} value="S">Satıcı Öder</option>
+                                <option {% if cargoPay =='B' %} selected {% endif %} value="B">Alıcı Öder</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Gönderi Yapılacak Alanlar</label>
+                        <div class="col-sm-10">
+                            <select id="input-status" name="cargoWhere" class="form-control">
+                                <option {% if cargoWhere =='city' %} selected {% endif %} value="city">Şehiriçi
+                                    Gönderim
+                                </option>
+                                <option {% if cargoWhere =='country' %} selected {% endif %} value="country">
+                                    Şehirlerarası Gönderim
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">Gönderi Yapacağınız Zaman</label>
+                        <div class="col-sm-10">
+                            <select id="input-status" name="cargoTime" class="form-control">
+                                <option {% if cargoTime =='today' %} selected {% endif %} value="today">Aynı Gün
+                                </option>
+                                <option {% if cargoTime =='tomorrow' %} selected {% endif %} value="tomorrow">Yarın
+                                </option>
+                                <option {% if cargoTime =='2-3days' %} selected {% endif %} value="2-3days">2 veya 3 iş
+                                    günü içerisinde
+                                </option>
+                                <option {% if cargoTime =='3-7days' %} selected {% endif %} value="3-7days">3 veya 7 iş
+                                    günü içerisinde
+                                </option>
+                                <option {% if cargoTime =='15days' %} selected {% endif %} value="15days">15 iş günü
+                                    içerisinde
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"><!--
+        $('#language a:first').tab('show');
+        //--></script>
+</div>
+{{ footer }}
