@@ -122,14 +122,17 @@ class ControllerExtensionModuleBagliSecenek extends Controller
 
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "oxit_bagli_secenek` (
 		  `oxit_id` int(11) NOT NULL AUTO_INCREMENT,
-		  `productId` int(11) NOT NULL,		  
+		  `productId` int(11) NOT NULL,		
+		  `productOptionValueId` int(11) NOT NULL,	  
 		  `optionId` int(11) NOT NULL,
-          `isParent` tinyint(1) NOT NULL,
-          `parentOptionId` int(11),
+          `optionValueId` int(11) NOT NULL,
           `quantity` int(4) NOT NULL,
-          `image` varchar(255),
 		  PRIMARY KEY (`oxit_id`)
 		)");
+
+
+
+
 
 
 
@@ -160,27 +163,26 @@ class ControllerExtensionModuleBagliSecenek extends Controller
     public function getAllSituation(){
         $service_oxit =new OxitBagliSecenekService();
 
-        $startOffset = $this->request->get['start'];
+
+
+        //option_id
         $parent_id = $this->request->get['parent_id'];
         $child_id = $this->request->get['child_id'];
 
-        $this->load->model('catalog/model/option');
+
+
+        //option_value
+        $this->load->model('catalog/option');
         $parent_values = array();
-        $parent_values = $this->model_catalgo_option->getOptionValues($parent_id) ;
+        $parent_values = $this->model_catalog_option->getOptionValues($parent_id) ;
 
         $child_values = array();
-        $child_values = $this->model_catalgo_option->getOptionValues($child_id) ;
+        $child_values = $this->model_catalog_option->getOptionValues($child_id) ;
 
         $data = $service_oxit->getAllSituationService($parent_values,$child_values);
 
-        $data =  $this->model_extension_oxit_gittigidiyor_entegrasyon->getInfo()[0];
-
-        $x=$service_oxit->getCategoryDeepest($data ,$startOffset);
-
         $this->response->addHeader('Content-Type: application/json');
-        $this->response->setOutput(json_encode($x));
-
-
+        $this->response->setOutput(json_encode($data));
 
 
     }

@@ -26,7 +26,9 @@ class ControllerCatalogProduct extends Controller
 
         $this->load->model('catalog/product');
         $this->load->model('extension/oxit/combine');
-        $this->load->model('extension/oxit/gittigidiyor_entegrasyon');
+        $this->load->model('extension/oxit/oxit_bagli_secenek');
+
+
 
 
 
@@ -81,18 +83,32 @@ class ControllerCatalogProduct extends Controller
     {
         $this->load->language('catalog/product');
 
+        $logger = new Log('error.log'); //just pass the file name as error.log
+        $logger->write('Custom Error Message');
+
         $this->document->setTitle($this->language->get('heading_title'));
 
         $this->load->model('catalog/product');
         $this->load->model('extension/oxit/combine');
         $this->load->model('extension/oxit/gittigidiyor_entegrasyon');
+        $this->load->model('extension/oxit/oxit_bagli_secenek');
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+            $x = $this->request->post;
+
             $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
             $this->model_extension_oxit_combine->beforeEditCombine($this->request->get['product_id']);
             $this->model_extension_oxit_combine->addCombine($this->request->post, $this->request->get['product_id']);
-            $gg_add=$this->model_extension_oxit_gittigidiyor_entegrasyon->addProduct($this->request->post, $this->request->get['product_id']);
+            //$gg_add=$this->model_extension_oxit_gittigidiyor_entegrasyon->addProduct($this->request->post, $this->request->get['product_id']);
             $this->session->data['success'] = $this->language->get('text_success');
+
+            $gg_add=$this->model_extension_oxit_oxit_bagli_secenek->addRelatedOption($this->request->post,$this->request->get['product_id']);
+
+
+
+
+
+
 
             $url = '';
 
@@ -965,6 +981,8 @@ class ControllerCatalogProduct extends Controller
         $data['all_options'] = array();
 
         $data['all_options']= $this->model_catalog_option->getOptions();
+
+
 
 
 
